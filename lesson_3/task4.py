@@ -7,6 +7,19 @@
 """
 
 
+def isfloat(value, must_be_pos=None):
+    """Проверяет является ли значение float"""
+    try:
+        float(value)
+        if must_be_pos and float(value) <= 0 or must_be_pos is False and float(value) >= 0:
+            # Не уверен можно ли строить троичные конструкции на основании True, False и None, но вроде работает
+            #                                           Явно задан must_be_pos is False, т.к. not None дает True
+            return False
+        return True
+    except ValueError:
+        return False
+
+
 def isinteger(value, must_be_pos=None):
     """Проверяет является ли значение value целым числом
 
@@ -43,13 +56,12 @@ def my_func2(x, y):
 
 while True:
     try:
-        my_x, my_y = input('Введите целые x>0 и y<0 через пробел ').split(' ')
-        if isinteger(my_x, True) and isinteger(my_y, False):
+        my_x, my_y = input('Введите действительное x>0 и целое y<0 через пробел ').split(' ')
+        if isfloat(my_x, True) and isinteger(my_y, False):
             break
     except ValueError:
         continue
 
-my_x, my_y = int(my_x), int(my_y)
+my_x, my_y = float(my_x), int(my_y)
 print('Результат решения через цикл: ', my_func(my_x, my_y))
 print('Результат решения через **:   ', my_func2(my_x, my_y))
-
