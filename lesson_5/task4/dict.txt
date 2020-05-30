@@ -1,0 +1,10 @@
+Zero:Ноль
+One:Один
+Two:Два
+Three:Три
+Four:Четыре
+Five:Пять
+Six:Шесть
+Seven:Семь
+Eight:Восемь
+Nine:Девять
