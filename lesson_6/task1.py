@@ -12,23 +12,16 @@ import sys
 
 
 class TrafficLight:
-    color = 'red'
-    __normal_state = 'red'  # Приватная переменная для проверки корретности преключения
-    switch_param = {'red': (7, 'КРАСНЫЙ', '\033[31m'),
-                    'yellow': (2, 'ЖЕЛТЫЙ', '\033[33m'),
-                    'green': (5, 'ЗЕЛЕНЫЙ', '\033[32m'),
-                    'yellow2': (2, 'ЖЕЛТЫЙ', '\033[33m'),
+    color = 0
+    __normal_state = 0  # Приватная переменная для проверки корретности преключения
+    switch_param = {0: (7, 'КРАСНЫЙ', '\033[31m'),
+                    1: (2, 'ЖЕЛТЫЙ', '\033[33m'),
+                    2: (5, 'ЗЕЛЕНЫЙ', '\033[32m'),
+                    3: (2, 'ЖЕЛТЫЙ', '\033[33m'),
                     }
 
     def __switch_to_next(self):  # Выполняет непосредтсвенное переключение светофора
-        if self.color == 'red':
-            self.color = self.__normal_state = 'yellow'
-        elif self.color == 'yellow':
-            self.color = self.__normal_state = 'green'
-        elif self.color == 'green':
-            self.color = self.__normal_state = 'yellow2'
-        else:
-            self.color = self.__normal_state = 'red'
+        self.color = self.__normal_state = self.color + 1 if self.color < 3 else 0
 
     def switch_color(self):  # Оформляет переключение с задержкой
         if not self.color == self.__normal_state:
@@ -50,7 +43,7 @@ tl1 = TrafficLight()
 
 """Проверка на корретность порядка переключения светофора"""
 # tl1.switch_color()
-# tl1.color = 'red'
+# tl1.color = 3
 # tl1.switch_color()
 
 tl_count = ''
