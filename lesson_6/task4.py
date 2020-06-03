@@ -3,7 +3,10 @@
 повернула (куда). Опишите несколько дочерних классов: TownCar, SportCar, WorkCar, PoliceCar. Добавьте в базовый класс
 метод show_speed, который должен показывать текущую скорость автомобиля. Для классов TownCar и WorkCar переопределите
 метод show_speed. При значении скорости свыше 60 (TownCar) и 40 (WorkCar) должно выводиться сообщение о превышении
-скорости. """
+скорости.
+
+Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к атрибутам, выведите результат.
+Выполните вызов методов и также покажите результат. """
 
 
 class Car:
@@ -74,10 +77,20 @@ class WorkCar(TownCar):
         super().__init__(*args, **kwargs)
 
 
+def print_car(car: Car):
+    print(f'Создан автомобиль {car.name} цвета {car.color} c макс. скоростью {car.speed}')
+
+
 sport_car_1 = SportCar(200, 'red', 'Nissan Skyline')
+print_car(sport_car_1)
 police_car_1 = PoliceCar(150, 'blue', 'Police Ford Focus')
+print_car(police_car_1)
 town_car_1 = TownCar(65, 'black', 'Toyota Camry')
+print_car(town_car_1)
 work_car_1 = WorkCar(35, 'white', 'Mazda Bongo')
+print_car(work_car_1)
+
+print('')
 
 sport_car_1.go()
 police_car_1.go()
