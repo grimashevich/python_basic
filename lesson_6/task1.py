@@ -17,6 +17,7 @@ class TrafficLight:
     switch_param = {'red': (7, 'КРАСНЫЙ', '\033[31m'),
                     'yellow': (2, 'ЖЕЛТЫЙ', '\033[33m'),
                     'green': (5, 'ЗЕЛЕНЫЙ', '\033[32m'),
+                    'yellow2': (2, 'ЖЕЛТЫЙ', '\033[33m'),
                     }
 
     def __switch_to_next(self):  # Выполняет непосредтсвенное переключение светофора
@@ -24,6 +25,8 @@ class TrafficLight:
             self.color = self.__normal_state = 'yellow'
         elif self.color == 'yellow':
             self.color = self.__normal_state = 'green'
+        elif self.color == 'green':
+            self.color = self.__normal_state = 'yellow2'
         else:
             self.color = self.__normal_state = 'red'
 
