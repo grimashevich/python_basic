@@ -18,13 +18,34 @@ class Matrix:
             for itm2 in itm:
                 result += str(itm2).center(5, ' ') + ' '
             result += '\n\n'
-
         return result
 
     def __add__(self, other):
         a = self.__data
         b = other.__data
-        i = j = 0
+
+        # Дополняет матрицы разных размеров нулями. Понимаю, что костыли, но пока - как смог.
+        c_width = max(len(a[0]), len(b[0]))
+        c_height = max(len(a), len(b))
+
+        if len(a[0]) < c_width:
+            tmp = [0 for _ in range(len(a[0]), c_width)]
+            for l_a in a:
+                l_a.extend(tmp)
+
+        if len(b[0]) < c_width:
+            tmp = [0 for _ in range(len(b[0]), c_width)]
+            for l_a in b:
+                l_a.extend(tmp)
+
+        for _tmp in range(len(a), c_height):
+            a.append([0 for _ in range(c_width)])
+
+        for _tmp in range(len(b), c_height):
+            b.append([0 for _ in range(c_width)])
+        # Конец дополнения нулями
+
+        i = 0
         for itm_a in a:
             j = 0
             for itm_a2 in itm_a:
@@ -34,11 +55,20 @@ class Matrix:
         return Matrix(b)
 
 
-l1 = [[64, 2, 8], [31, 2, 888], [1, 10, 99]]
-l2 = [[88, 4, 68], [11, 5, 74], [6, 45, 58]]
+l1 = [[1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+      ]
+
+l2 = [[3, 2, 1],
+      [1, 2, 3],
+      [1, 2, 3],
+      [4, 4, 4],
+      [5, 5, 5],
+      [6, 6, 6],
+      ]
 
 x = Matrix(l1)
 y = Matrix(l2)
-z = x +y
+z = x + y
 print(z)
-pass
