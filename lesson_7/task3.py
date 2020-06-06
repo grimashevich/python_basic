@@ -37,7 +37,7 @@ class Cell:
         return Cell(self.__cell_count * other.__cell_count)
 
     def __truediv__(self, other):
-        return Cell(round(self.__cell_count // other.__cell_count))
+        return Cell(self.__cell_count // other.__cell_count)
 
     def make_order(self, cols):
         rows = self.__cell_count // cols
@@ -49,7 +49,7 @@ class Cell:
         return result
 
 
-a, b = Cell(4), Cell(1)
-c = a * b
+a, b = Cell(99), Cell(2)
+c = a / b
 print(c)
-print(c.make_order(50))
+print(c.make_order(10))
