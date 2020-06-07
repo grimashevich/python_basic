@@ -13,10 +13,11 @@ class Matrix:
 
     def __str__(self):
         result = '\n'
+        max_w = len(str(max(map(max, self.__data))))
+        print(max(self.__data))
         for itm in self.__data:
-            # result += '|'
             for itm2 in itm:
-                result += str(itm2).center(5, ' ') + ' '
+                result += str(itm2).center(max_w + 4, ' ') + ' '
             result += '\n\n'
         return result
 
